@@ -1,9 +1,7 @@
 package com.example.spring_demo.domain.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,8 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "User") // Changed to lowercase and plural as per convention
+@Table(name = "Users")
 @Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserModel {
@@ -29,8 +28,7 @@ public class UserModel {
     private String lastName;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date year;
+    private Number year;
 
     @Column(nullable = false)
     private String password;
