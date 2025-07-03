@@ -24,28 +24,22 @@ public class TodoServiceImpl implements ITodoUseCase {
     private final IUseRepository useRepository;
     private final TodoMapper todoMapper;
 
+
     @Override
-    public CreateTodoReponse CreateTodo(TodoCreate todo) {
-        UserModel user = useRepository.findById(todo.getUser_id())
-                .orElseThrow(() -> new EntityNotFoundException("Utilisateur introuvable"));
-
-        TodoModel todoModel = new TodoModel();
-        todoModel.setTitle(todo.getTitle());
-        todoModel.setDescription(todo.getDescription());
-        todoModel.setUser(user); // l'entité, pas juste l'UUID
-
-        TodoModel savedTodo = todoRepository.save(todoModel);
-        return todoMapper.toDto(savedTodo);
-
+    public TodoModel CreateTodo(TodoCreate todo) {
+        UserModel user = useRepository.findByUser_id(todo.getUser_id());
+        if(user == null){ throw new EntityNotFoundException("User not found");}
+        //TodoModel todosave = todoRepository.save(todo);
+        return null;
     }
 
     @Override
-    public List<CreateTodoReponse> getTodosByUser(UUID user_id) {
+    public List<TodoModel> getTodosByUser(UUID user_id) {
         return List.of();
     }
 
     @Override
-    public CreateTodoReponse getTodoById(UUID todo_id) {
+    public TodoModel getTodoById(UUID todo_id) {
         return null;
     }
 
@@ -60,7 +54,7 @@ public class TodoServiceImpl implements ITodoUseCase {
     }
 
     @Override
-    public List<CreateTodoReponse> findallTodo() {
+    public List<TodoModel> findallTodo() {
         return List.of();
     }
 }

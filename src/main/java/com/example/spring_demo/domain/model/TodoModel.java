@@ -26,7 +26,7 @@ public class TodoModel {
     @Column(nullable = false)
     private String description;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = true, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 

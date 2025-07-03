@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ITodoUseCase {
-    CreateTodoReponse CreateTodo (TodoCreate todo);
-    List<CreateTodoReponse> getTodosByUser(UUID user_id);
-    CreateTodoReponse getTodoById(UUID todo_id);
+    TodoModel CreateTodo (TodoCreate todo);
+    List<TodoModel> getTodosByUser(UUID user_id);
+    TodoModel getTodoById(UUID todo_id);
     void deleteTodo(UUID todo_id);
     void updateTodo(TodoUpdate todo);
-    List<CreateTodoReponse> findallTodo ();
+    List<TodoModel> findallTodo ();
 }

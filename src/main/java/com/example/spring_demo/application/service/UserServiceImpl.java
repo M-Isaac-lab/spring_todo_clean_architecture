@@ -8,6 +8,9 @@ import com.example.spring_demo.domain.model.UserModel;
 import com.example.spring_demo.domain.port.in.IUserUseCase;
 import com.example.spring_demo.domain.port.out.IUseRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +19,15 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements IUserUseCase {
+public class UserServiceImpl implements IUserUseCase, UserDetailsService {
 
     private final IUseRepository useRepository;
     private final UserMapper userMapper;
 
+
     @Override
-    public CreateUserReponse findOneUser(UUID user_id) {
-        Optional<UserModel> userModel = useRepository.findById(user_id);
-        return userMapper.userDto(userModel.get());
+    public UserModel findOneUser(UUID user_id) {
+        return null;
     }
 
     @Override
@@ -43,7 +46,19 @@ public class UserServiceImpl implements IUserUseCase {
     }
 
     @Override
-    public List<CreateUserReponse> findAllUser() {
+    public List<UserModel> findAllUser() {
         return List.of();
+    }
+
+    @Override
+    public UserDetails loadUserByEmail(String email)  {
+        return useRepository.findByEmail(email);
+
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return useRepository.findByEmail(username);
     }
 }

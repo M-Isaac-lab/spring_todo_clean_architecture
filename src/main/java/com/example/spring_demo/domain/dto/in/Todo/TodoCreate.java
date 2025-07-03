@@ -1,14 +1,13 @@
 package com.example.spring_demo.domain.dto.in.Todo;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.UUID;
 
-
+@Getter
+@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
