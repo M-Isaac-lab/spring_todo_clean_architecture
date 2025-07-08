@@ -23,6 +23,8 @@ public class AuthServiceImpl implements IAuthUseCase, UserDetailsService {
 
     //private final PasswordEncoder passwordEncoder;
     private final IAuthRepository authRepository;
+    //private final PasswordEncoder passwordEncoder;
+
 
 
 
@@ -34,7 +36,9 @@ public class AuthServiceImpl implements IAuthUseCase, UserDetailsService {
         UserModel account_valid = authRepository.findByEmail(user_login.getEmail());
         if(account_valid == null){ throw new IllegalArgumentException("Email or password incorrect");}
         String password_valid = account_valid.getPassword().hashCode()+"";
-        if(!password_valid.equals(user_login.getPassword())){ throw new IllegalArgumentException("Email or password incorrect");}
+        //if(!passwordEncoder.matches(password, account_valid.getPassword())) {
+       //     throw new IllegalArgumentException("Email ou mot de passe incorrect");
+        //}
         return account_valid;
     }
 
@@ -47,6 +51,7 @@ public class AuthServiceImpl implements IAuthUseCase, UserDetailsService {
         user_save.setYear(user.getYear());
         user_save.setLastName(user.getLastName());
         user_save.setPassword(user.getPassword());
+        user.setPassword(user.getPassword());
 
         authRepository.save(user_save);
 
