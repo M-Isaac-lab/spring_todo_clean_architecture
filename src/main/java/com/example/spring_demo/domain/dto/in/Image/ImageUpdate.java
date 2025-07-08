@@ -16,7 +16,7 @@ public class ImageUpdate {
     private UUID todo_id;
 
     @NotNull(message = "l'ID de l'image est obligatoire")
-    private String image_id;
+    private String id;
 
 
 }

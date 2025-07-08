@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 public class TodoMapper {
     public CreateTodoReponse toDto(TodoModel todo) {
         return new CreateTodoReponse(
-            todo.getTodo_id(),
+            todo.getId(),
             todo.getTitle(),
             todo.getDescription(),
             todo.getCreatedAt(),
             todo.getUpdatedAt(),
-            todo.getUser().getUser_id(),
+            todo.getUser().getId(),
             todo.getImages()
         );
     }

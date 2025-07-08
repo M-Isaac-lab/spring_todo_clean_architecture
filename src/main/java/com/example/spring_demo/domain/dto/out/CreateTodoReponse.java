@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CreateTodoReponse {
 
-    private UUID todo_id;
+    private UUID id;
     private String title;
     private String description;
     private Date created_at;

@@ -15,6 +15,6 @@ public class CreateImageReponse {
     private String image_url;
     private Date created_at;
     private UUID todo_id;
-    private Number image_id;
+    private Number id;
 
 }

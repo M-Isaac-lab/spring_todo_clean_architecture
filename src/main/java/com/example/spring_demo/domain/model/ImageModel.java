@@ -6,7 +6,7 @@ import lombok.*;
 
 import java.util.Date;
 
-@Table(name = "Image")
+@Table(name = "images")
 @Entity
 @Data
 @AllArgsConstructor
@@ -14,9 +14,9 @@ import java.util.Date;
 public class ImageModel {
 
     @Id
-    @Column(name = "image_id")
+    @Column(name = "image_id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Number image_id;
+    private Number id;
 
     @Column(nullable = false)
     private String image_url;

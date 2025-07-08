@@ -11,7 +11,7 @@ public class UserMapper {
 
     public CreateUserReponse userDto(UserModel user) {
         return new CreateUserReponse(
-                user.getUser_id(),
+                user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getYear(),

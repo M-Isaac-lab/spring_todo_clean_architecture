@@ -1,6 +1,6 @@
 package com.example.spring_demo.adapter.in;
 
-import com.example.spring_demo.application.service.AuthServiceImpl;
+import com.example.spring_demo.application.service.authService;
 import com.example.spring_demo.domain.config.JwtUtils;
 import com.example.spring_demo.domain.model.UserModel;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class AuthController {
 
-    private final AuthServiceImpl authService;
+    private final authService authService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;

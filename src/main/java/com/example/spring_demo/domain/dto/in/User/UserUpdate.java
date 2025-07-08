@@ -3,16 +3,16 @@ package com.example.spring_demo.domain.dto.in.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.UUID;
 
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserUpdate extends UserCreate{
+public class UserUpdate{
 
     private String firstName;
 
@@ -26,7 +26,7 @@ public class UserUpdate extends UserCreate{
     private String password;
 
     @NotNull()
-    private UUID user_id;
+    private UUID id;
 
     private Date updateDate = new Date();
 

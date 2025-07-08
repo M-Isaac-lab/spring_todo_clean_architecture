@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class CreateUserReponse {
 
-    private UUID user_id;
+    private UUID id;
     private String first_name;
     private String last_name;
     private Number year;

@@ -1,6 +1,6 @@
 package com.example.spring_demo.domain.config;
 
-import com.example.spring_demo.application.service.UserServiceImpl;
+import com.example.spring_demo.application.serviceImp.UserServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

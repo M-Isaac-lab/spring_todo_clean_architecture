@@ -9,16 +9,17 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Todo")
+@Table(name = "todos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class TodoModel {
 
     @Id
-    @Column(name = "todo_id")
+    @Column(name = "todo_id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID todo_id;
+    private UUID id;
 
     @Column(nullable = false)
     private String title;
