@@ -1,9 +1,11 @@
 package com.example.spring_demo.domain.config;
 
+import com.example.spring_demo.application.serviceImp.AuthServiceImpl;
 import com.example.spring_demo.application.serviceImp.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -23,7 +25,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final UserServiceImpl userService;
+    @Lazy
+    private final AuthServiceImpl authService;
     private final JwtAuthenticationFilter jwtAuthFilter;
 
 
@@ -48,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService((UserDetailsService) userService);
+        authProvider.setUserDetailsService((UserDetailsService) authService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }

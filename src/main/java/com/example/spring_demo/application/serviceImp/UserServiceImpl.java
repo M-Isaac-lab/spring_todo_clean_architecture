@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserUseCase, UserDetailsService {
 
     private final IUseRepository useRepository;
     private final UserMapper userMapper;
-    private final PasswordEncoder passwordEncoder;
+    //private final PasswordEncoder passwordEncoder;
 
 
 
@@ -34,17 +34,19 @@ public class UserServiceImpl implements IUserUseCase, UserDetailsService {
 
     @Override
     public void createOneUser(UserCreate user) {
+        //String encode = passwordEncoder.encode(user.getPassword());
         UserModel user_save = new UserModel();
         user_save.setFirstName(user.getFirstName());
         user_save.setLastName(user.getLastName());
         user_save.setYear(user.getYear());
         user_save.setEmail(user.getEmail());
-        user_save.setPassword(passwordEncoder.encode(user.getPassword()));
+        user_save.setPassword(user.getPassword());
         useRepository.save(user_save);
     }
 
     @Override
     public void updateUser(UserUpdate user) {
+        //String encode = passwordEncoder.encode(user.getPassword());
         findOneUser(user.getId());
         UserModel user_update = new UserModel();
         user_update.setId(user.getId());
@@ -52,7 +54,7 @@ public class UserServiceImpl implements IUserUseCase, UserDetailsService {
         user_update.setLastName(user.getLastName());
         user_update.setYear(user.getYear());
         //user_update.setEmail(user.getEmail());
-        user_update.setPassword(passwordEncoder.encode(user.getPassword()));
+        user_update.setPassword(user.getPassword());
         useRepository.save(user_update);
     }
 

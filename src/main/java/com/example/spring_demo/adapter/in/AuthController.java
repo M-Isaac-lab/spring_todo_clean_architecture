@@ -2,6 +2,7 @@ package com.example.spring_demo.adapter.in;
 
 import com.example.spring_demo.application.service.authService;
 import com.example.spring_demo.domain.config.JwtUtils;
+import com.example.spring_demo.domain.dto.in.User.UserCreate;
 import com.example.spring_demo.domain.model.UserModel;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody UserModel user) {
+    public ResponseEntity<?> register(@RequestBody UserCreate user) {
         if (authService.existsByEmail(user.getEmail())) {
             return ResponseEntity.badRequest().body("Email already taken");
         }

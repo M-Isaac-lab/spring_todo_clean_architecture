@@ -17,6 +17,7 @@ public class UserCreate {
     @NotBlank(message = "Le lastName est obligatoire")
     private String lastName;
 
+    @NotBlank(message = "L'age est obligatoire")
     private Number year;
 
     @Email(message = "Vous devez entrer une adresse mail")

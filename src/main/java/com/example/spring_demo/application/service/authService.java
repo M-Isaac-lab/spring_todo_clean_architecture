@@ -1,5 +1,6 @@
 package com.example.spring_demo.application.service;
 
+import com.example.spring_demo.domain.dto.in.User.UserCreate;
 import com.example.spring_demo.domain.model.UserModel;
 import com.example.spring_demo.domain.port.in.IAuthUseCase;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+
 public class authService implements IAuthUseCase, UserDetailsService {
 
 
@@ -24,13 +26,18 @@ public class authService implements IAuthUseCase, UserDetailsService {
     }
 
     @Override
-    public void register(UserModel user) {
+    public void register(UserCreate user) {
         authUseCase.register(user);
     }
 
     @Override
     public UserModel verifyauth(String otp, String user_id) {
         return authUseCase.verifyauth(otp, user_id);
+    }
+
+    @Override
+    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+        return authUseCase.loadUserByEmail(email);
     }
 
     @Override
