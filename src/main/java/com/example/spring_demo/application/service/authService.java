@@ -1,10 +1,14 @@
 package com.example.spring_demo.application.service;
 
+import com.example.spring_demo.domain.config.JwtUtils;
+import com.example.spring_demo.domain.dto.in.Auth.VerifyAuth;
 import com.example.spring_demo.domain.dto.in.User.UserCreate;
+import com.example.spring_demo.domain.dto.out.CreateUserReponse;
 import com.example.spring_demo.domain.model.UserModel;
 import com.example.spring_demo.domain.port.in.IAuthUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,22 +21,24 @@ import org.springframework.stereotype.Service;
 public class authService implements IAuthUseCase, UserDetailsService {
 
 
+
+
     @Qualifier("AuthServiceImpl")
     private final IAuthUseCase authUseCase;
 
     @Override
-    public UserModel login(String email, String password) {
+    public CreateUserReponse login(String email, String password) {
         return authUseCase.login(email, password);
     }
 
     @Override
-    public void register(UserCreate user) {
-        authUseCase.register(user);
+    public CreateUserReponse register(UserCreate user) {
+        return authUseCase.register(user);
     }
 
     @Override
-    public UserModel verifyauth(String otp, String user_id) {
-        return authUseCase.verifyauth(otp, user_id);
+    public CreateUserReponse verifyauth(VerifyAuth user) {
+        return authUseCase.verifyauth(user);
     }
 
     @Override

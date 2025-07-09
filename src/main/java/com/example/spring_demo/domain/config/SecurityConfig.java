@@ -1,7 +1,6 @@
 package com.example.spring_demo.domain.config;
 
-import com.example.spring_demo.application.serviceImp.AuthServiceImpl;
-import com.example.spring_demo.application.serviceImp.UserServiceImpl;
+
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Lazy
-    private final AuthServiceImpl authService;
+    private final CustomUserDetailsService authService;
     private final JwtAuthenticationFilter jwtAuthFilter;
 
 
@@ -35,7 +34,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable) // Désactiver CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Autoriser l'accès sans auth aux endpoints d'auth
+                        .requestMatchers("/api/auth/login","api/auth/register").permitAll() // Autoriser l'accès sans auth aux endpoints d'auth
                         .anyRequest().authenticated()                // Les autres requêtes nécessitent auth
                 )
                 .sessionManagement(session -> session
@@ -51,7 +50,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService((UserDetailsService) authService);
+        authProvider.setUserDetailsService(authService);  // Pas besoin de cast
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }

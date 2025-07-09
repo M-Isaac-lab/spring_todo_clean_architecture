@@ -27,7 +27,7 @@ public class UserModel implements UserDetails {
     private String lastName;
 
     @Column(nullable = false)
-    private Number year;
+    private Integer year;
 
     @Column(nullable = false)
     private String password;

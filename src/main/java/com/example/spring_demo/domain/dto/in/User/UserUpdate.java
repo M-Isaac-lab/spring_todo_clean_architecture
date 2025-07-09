@@ -18,7 +18,7 @@ public class UserUpdate{
 
     private String lastName;
 
-    private Number year;
+    private Integer year;
 
     @Email(message = "Vous devez entrer une adresse mail")
     private String email;
